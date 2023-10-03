@@ -23,4 +23,13 @@ db.sequelize = sequelize;
 db.contacts = require("./contact.model.js")(sequelize, Sequelize);
 db.phones = require("./phone.model.js")(sequelize, Sequelize);
 
+// Define 1-many relationship
+db.contacts.hasMany(db.phones, {
+  foreignKey: "contactId",
+});
+
+db.phones.belongsTo(db.contacts, {
+  foreignKey: "contactId",
+});
+
 module.exports = db;

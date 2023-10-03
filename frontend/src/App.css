@@ -1,0 +1,83 @@
+/* App.css */
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+  margin: 0;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  border: 1px solid white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.container input[type="text"] {
+  width: 94%;
+  padding: 10px;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border: 1px solid white;
+  border-radius: 20px;
+  background: transparent;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  
+}
+
+li {
+  margin: 20px 0;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+button.create:hover {
+  background-color: #03a9f4; /* Glow Blue */
+  box-shadow: 0 0 10px rgba(0, 132, 255, 0.5); /* Blue glow on hover */
+}
+
+button.delete:hover {
+  background-color: #ff3d00; /* Glow Red */
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Red glow on hover */
+}
+
+button.edit:hover {
+  background-color: #4caf50; /* Glow Green on hover */
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow on hover */
+}

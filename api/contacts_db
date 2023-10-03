@@ -1,0 +1,11 @@
+CREATE TABLE contacts (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE phones (
+  id SERIAL PRIMARY KEY,
+  contact_id INTEGER NOT NULL REFERENCES contacts(id),
+  name TEXT NOT NULL,
+  number TEXT NOT NULL
+);

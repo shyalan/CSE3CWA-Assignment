@@ -1,0 +1,68 @@
+.modal {
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline-color: white;
+  outline-width: 2px;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 16px;
+  color: white;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+button.cancel:hover {
+  background-color: #ff3d00; /* Glow Red */
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Red glow on hover */
+}
+
+button.add:hover {
+  background-color: #03a9f4; /* Neon Blue */
+  box-shadow: 0 0 10px rgba(0, 132, 255, 0.5); /* Blue glow on hover */
+}
+
+button.save:hover {
+  background-color: #4caf50; /* Glow Green on hover */
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow on hover */
+}
+
+/* Reduce the gap between the 2 inputs and the buttons */
+.input-container {
+  margin-bottom: 10px;
+}
+
+/* Keep all of the items of equal distance */
+.input-container,
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
