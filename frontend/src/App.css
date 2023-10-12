@@ -68,8 +68,8 @@ button {
 }
 
 button.create:hover {
-  background-color: #03a9f4; /* Glow Blue */
-  box-shadow: 0 0 10px rgba(0, 132, 255, 0.5); /* Blue glow on hover */
+  background-color: #4caf50; /* Glow Green on hover */
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow on hover */
 }
 
 button.delete:hover {
@@ -78,6 +78,6 @@ button.delete:hover {
 }
 
 button.edit:hover {
-  background-color: #4caf50; /* Glow Green on hover */
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow on hover */
+  background-color: #03a9f4; /* Glow Blue */
+  box-shadow: 0 0 10px rgba(0, 132, 255, 0.5); /* Blue glow on hover */
 }

@@ -24,6 +24,7 @@ db.contacts = require("./contact.model.js")(sequelize, Sequelize);
 db.phones = require("./phone.model.js")(sequelize, Sequelize);
 
 // Define 1-many relationship
+// Check!!
 db.contacts.hasMany(db.phones, {
   foreignKey: "contactId",
 });

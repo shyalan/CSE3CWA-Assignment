@@ -9,33 +9,43 @@ function App() {
   const [name, setName] = useState('');
 
   useEffect(() => {
-    // Fetch the list of contacts from the backend
+    // Fetch the list of contacts from the backend when the component mounts
+    fetch('http://localhost/api/contacts')
+      .then((response) => response.json())
+      .then((data) => setContacts(data))
+      .catch((error) => console.error('Error:', error));
   }, []);
 
   const handleCreateContact = () => {
-    // Check if the name is empty
     if (!name) {
       alert("Please enter a contact name.");
       return;
     }
 
-    // Check if the name already exists in the list of contacts
-    const nameExists = contacts.some((contact) => contact.contactName === name);
-
-    if (nameExists) {
-      alert("Contact with the same name already exists.");
-      return; // Do not add the contact
-    }
-
-    // Create a new contact with the contact name that the user entered
-    // Add the new contact to the list of contacts
-    setContacts([...contacts, { contactName: name, names: [], numbers: [] }]);
-    setName(''); // Clear the input field after creating the contact
+    // Create a new contact and add it to the database
+    fetch('http://localhost/api/contacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ contactName: name }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setContacts([...contacts, data]);
+        setName('');
+      })
+      .catch((error) => console.error('Error:', error));
   };
 
   const handleDeleteContact = (contact) => {
-    // Delete the contact from the list of contacts
-    setContacts(contacts.filter((c) => c !== contact));
+    fetch(`http://localhost/api/contacts/${contact.id}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        setContacts(contacts.filter((c) => c.id !== contact.id));
+      })
+      .catch((error) => console.error('Error:', error));
   };
 
   const handleEditContact = (contact) => {
@@ -43,12 +53,22 @@ function App() {
   };
 
   const handleSaveEditedContact = (updatedContact) => {
-    // Update the contact in the list of contacts
-    const updatedContacts = contacts.map((contact) =>
-      contact === editingContact ? updatedContact : contact
-    );
-    setContacts(updatedContacts);
-    setEditingContact(null); // Close the modal
+    fetch(`http://localhost/api/contacts/${updatedContact.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedContact),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        const updatedContacts = contacts.map((contact) =>
+          contact.id === updatedContact.id ? updatedContact : contact
+        );
+        setContacts(updatedContacts);
+        setEditingContact(null);
+      })
+      .catch((error) => console.error('Error:', error));
   };
 
   return (
@@ -60,14 +80,14 @@ function App() {
         <button className="create" onClick={handleCreateContact}>Create Contact</button>
         <ul>
           {contacts.map((contact) => (
-            <li key={contact.contactName}>
+            <li key={contact.id}>
               {contact.contactName}
               <button className="edit" onClick={() => handleEditContact(contact)}>Edit</button>
               <button className="delete" onClick={() => handleDeleteContact(contact)}>Delete</button>
               <ul>
-                {contact.names.map((name, index) => (
+                {contact.numbers.map((phoneNumber, index) => (
                   <li key={index}>
-                    {name} - {contact.numbers[index]}
+                    {phoneNumber}
                   </li>
                 ))}
               </ul>
